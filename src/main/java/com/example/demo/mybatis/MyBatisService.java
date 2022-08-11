@@ -22,7 +22,7 @@ public class MyBatisService {
         SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
         try (SqlSession session = sqlSessionFactory.openSession()) {
             BlogDao mapper = session.getMapper(BlogDao.class);
-            Blog blog = mapper.selectBlog(1);
+            Blog blog = mapper.selectBlog2(1);
             System.out.println(blog.toString());
         }catch (Exception e){
             e.printStackTrace();

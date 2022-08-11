@@ -9,4 +9,6 @@ import org.springframework.stereotype.Repository;
 public interface BlogDao {
 
     Blog selectBlog(Integer id);
+
+    Blog selectBlog2(Integer id);
 }

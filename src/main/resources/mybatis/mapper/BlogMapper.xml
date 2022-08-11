@@ -3,7 +3,15 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.demo.mybatis.dao.BlogDao">
+    <resultMap id="blog" type="com.example.demo.mybatis.po.Blog">
+        <id column="id" property="id"/>
+        <result column="username" property="userName"/>
+        <result column="content" property="content"/>
+    </resultMap>
     <select id="selectBlog" resultType="com.example.demo.mybatis.po.Blog">
+        select * from Blog where id = #{id}
+    </select>
+    <select id="selectBlog2" resultMap="blog">
         select * from Blog where id = #{id}
     </select>
 </mapper>
