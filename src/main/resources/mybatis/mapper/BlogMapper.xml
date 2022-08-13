@@ -14,4 +14,13 @@
     <select id="selectBlog2" resultMap="blog">
         select * from Blog where id = #{id}
     </select>
+    <insert id="insertBlog" useGeneratedKeys="true" keyProperty="id">
+        insert into Blog(userName, content) values (#{userName}, #{content})
+    </insert>
+    <insert id="insertBlogs" useGeneratedKeys="true" keyProperty="id">
+        insert into Blog(userName, content) values
+        <foreach collection="list" item="item" separator=",">
+            (#{item.userName}, #{item.content})
+        </foreach>
+    </insert>
 </mapper>

@@ -2,6 +2,7 @@ package com.example.demo.mybatis.po;
 
 
 import com.example.demo.mybatis.enums.UserNameEnum;
+import org.springframework.util.Assert;
 
 public class Blog {
 
@@ -51,5 +52,35 @@ public class Blog {
 
     public void setContent(String content) {
         this.content = content;
+    }
+
+    public static BlogBuilder builder(){
+        return new BlogBuilder();
+    }
+    public static class BlogBuilder{
+
+        UserNameEnum userName;
+
+        String content;
+
+
+        public BlogBuilder setUserName(UserNameEnum userName) {
+            this.userName = userName;
+            return this;
+        }
+
+        public BlogBuilder setContent(String content) {
+            this.content = content;
+            return this;
+        }
+
+        public Blog build(){
+            Assert.notNull(content, "content must not be null");
+            if(userName == null){
+                userName = UserNameEnum.HUWENTAO;
+            }
+
+            return new Blog(null,userName,content);
+        }
     }
 }
