@@ -21,18 +21,18 @@ public class UserNameTypeHandler extends BaseTypeHandler<UserNameEnum> {
     @Override
     public UserNameEnum getNullableResult(ResultSet rs, String columnName) throws SQLException {
         String originalUserName = rs.getString(columnName);
-        return UserNameEnum.valueOf(originalUserName.toUpperCase());
+        return UserNameEnum.getEnum(originalUserName);
     }
 
     @Override
     public UserNameEnum getNullableResult(ResultSet rs, int columnIndex) throws SQLException {
         String originalUserName = rs.getString(columnIndex);
-        return UserNameEnum.valueOf(originalUserName.toUpperCase());
+        return UserNameEnum.getEnum(originalUserName);
     }
 
     @Override
     public UserNameEnum getNullableResult(CallableStatement cs, int columnIndex) throws SQLException {
         String originalUserName = cs.getString(columnIndex);
-        return UserNameEnum.valueOf(originalUserName.toUpperCase());
+        return UserNameEnum.getEnum(originalUserName);
     }
 }
