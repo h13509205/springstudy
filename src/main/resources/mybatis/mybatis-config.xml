@@ -21,6 +21,7 @@
 
     <mappers>
         <mapper resource="mybatis/mapper/BlogMapper.xml"/>
+        <mapper resource="mybatis/mapper/UserMapper.xml"/>
     </mappers>
 
 </configuration>

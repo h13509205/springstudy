@@ -11,11 +11,11 @@ public class Blog {
 
     private Integer id;
 
-    private UserNameEnum userName;
+    private String userName;
 
     private String content;
 
-    public Blog(Integer id, UserNameEnum userName, String content) {
+    public Blog(Integer id, String userName, String content) {
         this.id = id;
         this.userName = userName;
         this.content = content;
@@ -38,11 +38,11 @@ public class Blog {
         this.id = id;
     }
 
-    public UserNameEnum getUserName() {
+    public String getUserName() {
         return userName;
     }
 
-    public void setUserName(UserNameEnum userName) {
+    public void setUserName(String userName) {
         this.userName = userName;
     }
 
@@ -59,12 +59,12 @@ public class Blog {
     }
     public static class BlogBuilder{
 
-        UserNameEnum userName;
+        String userName;
 
         String content;
 
 
-        public BlogBuilder setUserName(UserNameEnum userName) {
+        public BlogBuilder setUserName(String userName) {
             this.userName = userName;
             return this;
         }
@@ -77,7 +77,7 @@ public class Blog {
         public Blog build(){
             Assert.notNull(content, "content must not be null");
             if(userName == null){
-                userName = UserNameEnum.HUWENTAO;
+                userName = UserNameEnum.HUWENTAO.name();
             }
 
             return new Blog(null,userName,content);
