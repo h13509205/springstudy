@@ -7,6 +7,9 @@
     <typeHandlers>
         <package name="com.example.demo.mybatis.converter"/>
     </typeHandlers>
+    <plugins>
+        <plugin interceptor="com.example.demo.mybatis.interceptor.SqlCostTimeInterceptor"></plugin>
+    </plugins>
     <environments default="development">
         <environment id="development">
             <transactionManager type="JDBC"/>

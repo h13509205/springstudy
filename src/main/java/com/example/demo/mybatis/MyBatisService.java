@@ -26,7 +26,7 @@ public class MyBatisService {
         String resource = "mybatis/mybatis-config.xml";
         InputStream inputStream = Resources.getResourceAsStream(resource);
         SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
-        try (SqlSession session = sqlSessionFactory.openSession()) {
+        try (SqlSession session = sqlSessionFactory.openSession(true)) {
             BlogDao mapper = session.getMapper(BlogDao.class);
             Blog blog = mapper.selectBlog2(1);
             System.out.println(blog.toString());
@@ -34,11 +34,10 @@ public class MyBatisService {
             e.printStackTrace();
         }
 
-//        try (SqlSession session = sqlSessionFactory.openSession()){
+//        try (SqlSession session = sqlSessionFactory.openSession(true)){
 //            Blog b = Blog.builder().setContent("this is my " + new Random().nextInt(10000) + "'st blog!").build();
 //            BlogDao mapper = session.getMapper(BlogDao.class);
 //            System.out.println(mapper.insertBlog(b));
-//            session.commit();
 //        }
 
 //        try (SqlSession session = sqlSessionFactory.openSession()){
@@ -54,21 +53,34 @@ public class MyBatisService {
 //            e.printStackTrace();
 //        }
 
-        try (SqlSession session = sqlSessionFactory.openSession()){
-            User user = new User();
-            user.setUserName("huwentao");
-            user.setPassword(new Password("123456789"));
-            UserDao userDao = session.getMapper(UserDao.class);
-            userDao.insertUser(user);
-            session.commit();
-        }catch (Exception e){
-            e.printStackTrace();
-        }
+//        try (SqlSession session = sqlSessionFactory.openSession(true)){
+//            User user = new User();
+//            user.setUserName("huwentao");
+//            user.setPassword(new Password("32453465453"));
+//            UserDao userDao = session.getMapper(UserDao.class);
+//            userDao.insertUser(user);
+//        }catch (Exception e){
+//            e.printStackTrace();
+//        }
 
         try (SqlSession session = sqlSessionFactory.openSession()){
             UserDao userDao = session.getMapper(UserDao.class);
             User user = userDao.selectUser(1);
             System.out.println(user.toString());
+        }
+
+        try (SqlSession session = sqlSessionFactory.openSession(true)){
+            User user = new User();
+            //user.setUserName("huwentao");
+            user.setId(1);
+            user.setPassword(new Password("32453465453"));
+            UserDao userDao = session.getMapper(UserDao.class);
+            userDao.updateUser(user);
+
+            User user2 = userDao.selectUser(1);
+            System.out.println(user2.toString());
+        }catch (Exception e){
+            e.printStackTrace();
         }
 
     }
