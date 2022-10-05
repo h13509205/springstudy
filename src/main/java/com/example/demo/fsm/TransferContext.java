@@ -30,7 +30,17 @@ public class TransferContext {
         this.ruleList = ruleList;
     }
 
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
     private Integer integer;
+
+    private Integer id;
 
     private CheckStateEnum checkState;
 

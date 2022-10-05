@@ -14,4 +14,6 @@ public class RemindRule implements IRule{
             return CheckEventEnum.PASS;
         }
     }
+
+
 }

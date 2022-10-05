@@ -7,11 +7,13 @@ import org.springframework.util.Assert;
 
 public class RuleWapper implements IRule{
 
+    private String ruleName;
+
     private IRule rule;
 
     private CheckStateEnum checkState;
 
-    RuleWapper(IRule rule){
+    public RuleWapper(IRule rule){
         Assert.notNull(rule,"rule should not be null");
         this.rule = rule;
         checkState = CheckStateEnum.START;
@@ -24,5 +26,19 @@ public class RuleWapper implements IRule{
         } else {
             return rule.check(context);
         }
+    }
+
+
+    public String getRuleName() {
+        return ruleName;
+    }
+
+    public void setRuleName(String ruleName) {
+        this.ruleName = ruleName;
+    }
+
+    @Override
+    public String toString() {
+        return "rule = " + rule.getClass().toString();
     }
 }
