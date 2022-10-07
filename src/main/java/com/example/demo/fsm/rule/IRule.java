@@ -4,5 +4,5 @@ import com.example.demo.fsm.TransferContext;
 import com.example.demo.fsm.event.CheckEventEnum;
 
 public interface IRule{
-    CheckEventEnum check(TransferContext context);
+    default CheckEventEnum check(TransferContext context){ return CheckEventEnum.PASS; }
 }
