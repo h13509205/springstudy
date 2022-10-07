@@ -7,7 +7,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Component;
 
 @Configuration
-@ComponentScan("com.example")
+@ComponentScan("com.example.demo.spel")
 public class TestParameterInjectionComponent {
 
     @Autowired

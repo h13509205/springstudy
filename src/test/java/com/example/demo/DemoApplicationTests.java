@@ -31,13 +31,5 @@ class DemoApplicationTests {
 		System.out.println(new Random().nextInt(100));
 	}
 
-	@Test
-	void expressionTest(){
-		ExpressionParser parser = new SpelExpressionParser();
-		Expression expression = parser.parseExpression("new java.util.Random().nextInt(100)");
-		System.out.println(expression.getValue());
-		Expression expression2 = parser.parseExpression("0 > null");
-		System.out.println(expression2.getValue(Integer.class));
-	}
 
 }

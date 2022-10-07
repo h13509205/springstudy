@@ -34,7 +34,7 @@ public class SpelStudy {
     protected static String protectedStaticString = "protected static String";
 
     @Bean("startRule")
-    private RuleWapper getBean(){
+    public RuleWapper getBean(){
         return new RuleWapper(new StartRule());
     }
 
@@ -60,8 +60,8 @@ public class SpelStudy {
         //varialbes();
         //thisAndRoot();
         //customizeFunction();
-        //getSpringBean();
-        parameterInjection();
+        getSpringBean();
+        //parameterInjection();
     }
 
     public static boolean test1(Integer integer){
@@ -445,6 +445,7 @@ public class SpelStudy {
 
     //使用@来获取Bean
     // 跑不起来，在linux上估计行  java.nio.file.InvalidPathException: Illegal char <:> at index 2: /C:/Users/hwt20/IdeaProjects/springstudy/target/classes/com/example/demo/spel/
+    //works on win10,not work on win11
     public static void getSpringBean(){
         AnnotationConfigApplicationContext applicationContext = new AnnotationConfigApplicationContext(SpelStudy.class);
         StandardEvaluationContext context = new StandardEvaluationContext();
@@ -458,7 +459,7 @@ public class SpelStudy {
     //内置对象：JVM系统属性systemProperties，类型为 Map<String, Object>
     //内置对象：系统环境变量systemEnvironment，类型为 Map<String, Object>
     public static void parameterInjection(){
-        AnnotationConfigApplicationContext applicationContext = new AnnotationConfigApplicationContext("com.example");
+        AnnotationConfigApplicationContext applicationContext = new AnnotationConfigApplicationContext(TestParameterInjectionComponent.class);
         TestParameterInjectionComponent component = applicationContext.getBean(TestParameterInjectionComponent.class);
         System.out.println(component);
     }
