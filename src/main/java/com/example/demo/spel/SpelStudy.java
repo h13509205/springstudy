@@ -466,7 +466,7 @@ public class SpelStudy {
 }
 
 
-class Inventor implements IRule{
+class Inventor{
     Inventor(Integer id, String name, String nation){
         this.id = id;
         this.name = name;

@@ -21,7 +21,7 @@ import java.util.Random;
 @Service
 public class MyBatisService {
 
-    @PostConstruct
+    //@PostConstruct
     public void initMethod() throws IOException {
         String resource = "mybatis/mybatis-config.xml";
         InputStream inputStream = Resources.getResourceAsStream(resource);

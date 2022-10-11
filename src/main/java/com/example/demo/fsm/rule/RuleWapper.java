@@ -41,4 +41,9 @@ public class RuleWapper implements IRule{
     public String toString() {
         return "rule = " + rule.getClass().toString();
     }
+
+    @Override
+    public int compareTo(IRule o) {
+        return 0;
+    }
 }

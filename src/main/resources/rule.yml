@@ -1,0 +1,32 @@
+# @ConfigurationProperties支持配置类属性与yml配置属性的松散绑定，规则为lastName 或 last_name 或 last-name 或 LASTNAME 或 LAST_NAME 或 LAST-NAME
+# @Value注入支持spel，@ConfigurationProperties不支持
+# @ConfigurationProperties支持JSR303规范，如在属性上加@Email注解，进行数据格式校验，@Value不支持
+# @ConfigurationProperties支持复杂类型封装，@Value不支持，所以针对这种复杂对象的配置，必须使用@ConfigurationProperties
+rule:
+  config:
+    rule_group:
+      - name: "single transfer rule group"
+        verify_type: firstStop
+        composite_rules:
+          - name: "balance rule"
+            priority: 1
+            condition_function: 'xxx.xxx1()'
+            hit_action:
+              - name: 'xxx.xxx2()'
+              - name: 'xxx.xxx3()'
+            un_hit_action:
+              - name: 'xxx.xxx4()'
+              - name: 'xxx.xxx5()'
+            hit_event: REMIND
+            un_hit_event: PASS
+          - name: "telefraud rule"
+            priority: 2
+            condition_function: 'xxx.xxx6()'
+            hit_action:
+              - name: 'xxx.xxx7()'
+              - name: 'xxx.xxx8()'
+            un_hit_action:
+              - name: 'xxx.xxx9()'
+              - name: 'xxx.xxx10()'
+            hit_event: INTERRUPT
+            un_hit_event: PASS
