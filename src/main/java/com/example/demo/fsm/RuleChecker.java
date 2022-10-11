@@ -1,4 +1,4 @@
-package com.example.demo.fsm.action;
+package com.example.demo.fsm;
 
 import com.example.demo.fsm.TransferContext;
 import com.example.demo.fsm.rule.IRule;
