@@ -16,8 +16,11 @@ package com.example.demo.annotation;
  *   自定义属性被定义在AnnotationInvocationHandler下的memberValues下面（是个map），实际调用方法获取参数值时，就相当于从map里拿个值
  *   其中invoke()主要是对其中的equals(),hashcode(),toString()等方法进行代理，除这几个方法之外，其他方法都委托给自定义注解中的方法
  *   此外，自定义注解参数的数据绑定，通过AnnotationParser进行绑定（不关键）
- * 4.java在编译的时候，会使用Annotation Processor（是javac的一个宫工具），
+ * 4.注解作用范围仅在源代码中： https://blog.csdn.net/u010126792/article/details/96703015
+ *   java在编译的时候，会使用Annotation Processor（是javac的一个工具），
  *   如果需要对自定义注解进行处理，需要自己实现一个注解处理器，如继承AbstractProcessor，
- *   继承完后，需要在resource下的时候创建文件META-INF/services/javax.annotation.processing.Processor，并将处理器写到该文件中，格式为packagename.Processor
+ *   继承完后，需要在resource下的时候创建文件META-INF/services/javax.annotation.processing.Processor，并将处理器写到该文件中，格式为packageName.Processor
  *   此外可以通过google的@AutoService进行标注，说明这个注解需要在编译时被处理
+ *   javax.lang.model.Element  表示类中的一个元素，可以表示：package, class, interface, method, field, parameter等等，也有和这些概念一一对应的子类，如ExecutableElement表示method
+ *
  */
