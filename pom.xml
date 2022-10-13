@@ -56,7 +56,17 @@
 			<artifactId>easy-rules-core</artifactId>
 			<version>4.1.0</version>
 		</dependency>
+
+		<!-- annotation -->
+		<dependency>
+			<groupId>com.google.auto.service</groupId>
+			<artifactId>auto-service</artifactId>
+			<version>1.0.1</version>
+		</dependency>
 	</dependencies>
+
+
+
 
 	<build>
 		<plugins>
