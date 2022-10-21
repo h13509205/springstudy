@@ -10,9 +10,10 @@ import org.springframework.context.ApplicationContext;
 public class DemoApplication {
 
 	public static void main(String[] args) {
+
 		ApplicationContext context = SpringApplication.run(DemoApplication.class, args);
-		RulesConfiguration configuration = context.getBean(RulesConfiguration.class);
-		System.out.println();
+		//RulesConfiguration configuration = context.getBean(RulesConfiguration.class);
+		//System.out.println();
 	}
 
 }
