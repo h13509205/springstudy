@@ -16,12 +16,23 @@ package com.example.demo.annotation;
  *   自定义属性被定义在AnnotationInvocationHandler下的memberValues下面（是个map），实际调用方法获取参数值时，就相当于从map里拿个值
  *   其中invoke()主要是对其中的equals(),hashcode(),toString()等方法进行代理，除这几个方法之外，其他方法都委托给自定义注解中的方法
  *   此外，自定义注解参数的数据绑定，通过AnnotationParser进行绑定（不关键）
- * 4.注解作用范围仅在源代码中： https://blog.csdn.net/u010126792/article/details/96703015
+ * 4.注解作用范围仅在源代码中： https://blog.csdn.net/u010126792/article/details/96703015，https://blog.csdn.net/jcmj123456/article/details/115921085
  *   java在编译的时候，会使用Annotation Processor（是javac的一个工具），
  *   如果需要对自定义注解进行处理，需要自己实现一个注解处理器，如继承AbstractProcessor，
  *   继承完后，需要在resource下的时候创建文件META-INF/services/javax.annotation.processing.Processor，并将处理器写到该文件中，格式为packageName.Processor
  *   此外可以通过google的@AutoService进行标注，说明这个注解需要在编译时被处理，
  *   在maven工程中，使用mvnDebug clean package进行调试
  *   javax.lang.model.Element  表示类中的一个元素，可以表示：package, class, interface, method, field, parameter等等，也有和这些概念一一对应的子类，如ExecutableElement表示method
- *
+ *   Element对象中存在一个方法，用于获取ElementKind，ElementKind代表了这类Element总共有多少类型
+ *     类型汇总：Declared types: PACKAGE,ENUM,CLASS(非ENUM类和RECORD类),ANNOTATION_TYPE,INTERFACE,
+ *             Variables: ENUM_CONSTANT,FIELD(除ENUM_CONSTANT),PARAMETER,LOCAL_VARIABLE,EXCEPTION_PARAMETER(异常)
+ *             Executables: METHOD,CONSTRUCTOR,STATIC_INIT(静态代码块),INSTANCE_INIT,TYPE_PARAMETER(参数化类型，如尖括号中的泛型),
+ *             其他：OTHER(保留类型，说明不是element)
+ *             在首次发布之后加的类型：RESOURCE_VARIABLE(since 1.7) 用于try resource,
+ *                                MODULE(since 9),RECORD(since 16),RECORD_COMPONENT(since 16),BINDING_VARIABLES(since 16)
+ *     类型总结：如果有细分的，以细分的为主，如果没有细分的，那就是一个公共概念，如CLASS,和ENUM，RECORD的关系
+ *   Elements工具：从processingEnv中拿到，主要是用于对Element的操作
+ *   Filer:可以用这个工具创建新的文件，源文件，或者编译后的class文件，都可以通过这个创建
+ *   TypeMirror,TypeKind：表示参数的类型，这种类型主要为基本类型，引用类型，数组类型等
+ *   Types:对Type，TypeMirror进行操作的工具，从processingEnv中拿到
  */
