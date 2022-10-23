@@ -16,7 +16,8 @@ package com.example.demo.annotation;
  *   自定义属性被定义在AnnotationInvocationHandler下的memberValues下面（是个map），实际调用方法获取参数值时，就相当于从map里拿个值
  *   其中invoke()主要是对其中的equals(),hashcode(),toString()等方法进行代理，除这几个方法之外，其他方法都委托给自定义注解中的方法
  *   此外，自定义注解参数的数据绑定，通过AnnotationParser进行绑定（不关键）
- * 4.注解作用范围仅在源代码中： https://blog.csdn.net/u010126792/article/details/96703015，https://blog.csdn.net/jcmj123456/article/details/115921085
+ * 4.注解作用范围仅在源代码中： https://blog.csdn.net/u010126792/article/details/96703015，
+ *   目的：1.为了生成所需要的文件（切面、代理等），2.校验参数、方法等是否合法，
  *   java在编译的时候，会使用Annotation Processor（是javac的一个工具），
  *   如果需要对自定义注解进行处理，需要自己实现一个注解处理器，如继承AbstractProcessor，
  *   继承完后，需要在resource下的时候创建文件META-INF/services/javax.annotation.processing.Processor，并将处理器写到该文件中，格式为packageName.Processor
@@ -31,8 +32,19 @@ package com.example.demo.annotation;
  *             在首次发布之后加的类型：RESOURCE_VARIABLE(since 1.7) 用于try resource,
  *                                MODULE(since 9),RECORD(since 16),RECORD_COMPONENT(since 16),BINDING_VARIABLES(since 16)
  *     类型总结：如果有细分的，以细分的为主，如果没有细分的，那就是一个公共概念，如CLASS,和ENUM，RECORD的关系
+ *   Element的子类：
+ *      ModuleElement: 代表一个module，java9开始才有
+ *      PackageElement: 代表package
+ *      ExecutableElement: 代表一个方法，构造方法，静态代码块，
+ *      VariableElement: 代表成员变量，枚举中的静态变量，方法或构造方法的参数，局部变量，资源变量（try-with-resource），异常变量
+ *      TypeElement: 代表一个class或者一个interface
+ *      RecordComponentElement: 代表record component，java16才开始有
+ *      QualifiedNameable: mixin interface相关（织入），从java1.7开始才有
+ *      Parameterizable: 同上
+ *      TypeParameterElement: 一个正式的代表类或interface的Element，但是和TypeElement不同？
  *   Elements工具：从processingEnv中拿到，主要是用于对Element的操作
  *   Filer:可以用这个工具创建新的文件，源文件，或者编译后的class文件，都可以通过这个创建
- *   TypeMirror,TypeKind：表示参数的类型，这种类型主要为基本类型，引用类型，数组类型等
+ *   TypeMirror表示element的类型的属性,这种类型主要为基本类型，引用类型，数组类型等
+ *   TypeKind：表示类型属性的枚举
  *   Types:对Type，TypeMirror进行操作的工具，从processingEnv中拿到
  */
